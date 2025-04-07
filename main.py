@@ -30,10 +30,24 @@ class Solution(object):
             return nums1[counter1] if nums1[counter1] < nums2[counter2] else nums2[counter2]
  
         
+    def reverse(self, x):
+        result = 0
+        num = abs(x)
+        while 9 < num:
+            result = result*10 + num % 10
+            num //=10
+        result = result*10 + num % 10
+        if x < 0:
+            result = -result
 
+        if result < -2**31 or result > 2**31 - 1:
+            return 0
+
+        return result
 
 
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
-    print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2]))
+    # print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2])) 
+    print(Solution.reverse(x = 1534236469))
