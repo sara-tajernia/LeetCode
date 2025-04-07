@@ -53,10 +53,34 @@ class Solution(object):
                 n /=i
         return n==1
 
+    def addBinary(self, a, b):
+        max_len = max(len(a), len(b))
+        a = list(map(int, a.zfill(max_len)))
+        b = list(map(int, b.zfill(max_len)))
+        
+        carry = 0
+        result = []
+
+        for i in range(len(a)-1, -1, -1):
+            if (a[i] + b[i] + carry) % 2 == 1:
+                result.append(1)
+            else:
+                result.append(0)
+
+            if 1 < a[i] + b[i] + carry:
+                carry = 1
+            else:
+                carry = 0
+
+        if carry == 1:
+            result.append(carry)
+        return  ''.join(map(str, result[::-1])) 
 
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
     # print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2])) 
     # print(Solution.reverse(x = 1534236469))
-    print(Solution.isUgly(n=14))
+    # print(Solution.isUgly(n=14))
+    print(Solution.addBinary(a = "1111", b = "1111"))
+
