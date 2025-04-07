@@ -44,10 +44,19 @@ class Solution(object):
             return 0
 
         return result
+    
+    def isUgly(self, n):
+        if n == 0:
+            return False
+        for i in [2,3,5]:
+            while n % i == 0:
+                n /=i
+        return n==1
 
 
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
     # print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2])) 
-    print(Solution.reverse(x = 1534236469))
+    # print(Solution.reverse(x = 1534236469))
+    print(Solution.isUgly(n=14))
