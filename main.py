@@ -1,3 +1,5 @@
+from collections import Counter
+
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         saved = []
@@ -91,6 +93,30 @@ class Solution(object):
                 break
         return counter
     
+    def largestInteger(self, nums, k):
+        numFirst = nums[0]
+        numLast = nums[-1]
+        
+        if k == len(nums):
+            return max(nums)
+        
+        if k == 1:
+            count = Counter(nums)
+            unique_numbers = [num for num, freq in count.items() if freq == 1]
+            return max(unique_numbers) if unique_numbers else -1
+
+        
+        for i in range(len(nums)):
+            if nums[i] == numFirst and i != 0:
+                numFirst = -1
+            elif nums[i] == numLast and i != len(nums)-1:
+                numLast = -1
+    
+        if numFirst < numLast:
+            return numLast
+        else:
+            return numFirst
+        
     def isMatch(self, s, p):
 
         return
@@ -102,5 +128,6 @@ if __name__ == "__main__":
     # print(Solution.reverse(x = 1534236469))
     # print(Solution.isUgly(n=14))
     # print(Solution.addBinary(a = "1111", b = "1111"))
-    print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
+    # print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
+    print(Solution.largestInteger(nums=[0,0], k=1))
     # print(Solution.isMatch(s = "aa", p = "a"))
