@@ -75,6 +75,25 @@ class Solution(object):
         if carry == 1:
             result.append(carry)
         return  ''.join(map(str, result[::-1])) 
+    
+    def lengthOfLastWord(self, s):
+        s = list(s)
+        counter = 0
+        i = len(s) -1
+        while s[i] == ' ':
+            s.pop(-1)
+            i -= 1
+        i = len(s) -1
+        while s[i] != ' ':
+            counter += 1
+            i -= 1
+            if i == -1:
+                break
+        return counter
+    
+    def isMatch(self, s, p):
+
+        return
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -82,5 +101,6 @@ if __name__ == "__main__":
     # print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2])) 
     # print(Solution.reverse(x = 1534236469))
     # print(Solution.isUgly(n=14))
-    print(Solution.addBinary(a = "1111", b = "1111"))
-
+    # print(Solution.addBinary(a = "1111", b = "1111"))
+    print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
+    # print(Solution.isMatch(s = "aa", p = "a"))
