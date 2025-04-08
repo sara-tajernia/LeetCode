@@ -130,9 +130,36 @@ class Solution(object):
             
         return num2
     
-    def isMatch(self, s, p):
+    def threeSum(self, nums):
+        answer = []
+        print(nums)
+        twoSum = {}
+        for i in range(len(nums)-1):
+            for j in range(i+1, len(nums)):
+                print(twoSum, nums[i], nums[j])
+                for n in twoSum.keys():
+                    if -nums[j] == n:
+                        for val in twoSum[n]:
+                            print('hiiiii', nums[j], val)
 
-        return
+                            three = tuple(sorted((val[0], val[1], nums[j])))
+                            if three not in answer:
+                                answer.append(three)
+                                print(answer, 'added')
+                            # three = tuple(sorted((val, nums[j])))
+                            # # three = twoSum[]
+                            # if three not in answer:
+                            #     answer.append(three)
+                        
+
+                pair = tuple(sorted((nums[i], nums[j])))
+                if nums[i] + nums[j] in twoSum:
+                    if pair not in twoSum[nums[i] + nums[j]]:
+                        twoSum[nums[i] + nums[j]].append(pair)
+                else:
+                    twoSum[nums[i] + nums[j]] = [pair]
+
+        return answer
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -143,5 +170,5 @@ if __name__ == "__main__":
     # print(Solution.addBinary(a = "1111", b = "1111"))
     # print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
     # print(Solution.largestInteger(nums=[0,0], k=1))
-    print(Solution.climbStairs(n = 1))
-    # print(Solution.isMatch(s = "aa", p = "a"))
+    # print(Solution.climbStairs(n = 1))
+    print(Solution.threeSum(nums = [1,2,-2,-1]))
