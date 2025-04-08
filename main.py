@@ -117,6 +117,19 @@ class Solution(object):
         else:
             return numFirst
         
+    def climbStairs(self, n):
+        if n == 1:
+            return 1
+        
+        num1 = 1
+        num2 = 2
+        for i in range(2, n):
+            swap = num2
+            num2 += num1
+            num1 = swap
+            
+        return num2
+    
     def isMatch(self, s, p):
 
         return
@@ -129,5 +142,6 @@ if __name__ == "__main__":
     # print(Solution.isUgly(n=14))
     # print(Solution.addBinary(a = "1111", b = "1111"))
     # print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
-    print(Solution.largestInteger(nums=[0,0], k=1))
+    # print(Solution.largestInteger(nums=[0,0], k=1))
+    print(Solution.climbStairs(n = 1))
     # print(Solution.isMatch(s = "aa", p = "a"))
