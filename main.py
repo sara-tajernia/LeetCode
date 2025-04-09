@@ -1,4 +1,5 @@
 from collections import Counter
+from collections import deque, defaultdict
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -168,6 +169,29 @@ class Solution(object):
                 max = abs(xs[i] - xs[i+1])
         return max
     
+    def isValidSudoku(self, board):
+        N = M = len(board)
+        row_set = [set() for _ in range(N)]
+        print(row_set)
+        rows = defaultdict(list)
+        cols = defaultdict(list)
+        sqrs = defaultdict(list)
+
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] != ".":
+                    if (board[i][j] not in rows[i] and 
+                        board[i][j] not in cols[j] and 
+                        board[i][j] not in sqrs[3 * (j // 3) + (i // 3 + 1)]
+                        ):
+                        rows[i].append(board[i][j])
+                        cols[j].append(board[i][j])
+                        sqrs[3*(j//3) + (i//3 +1)].append(board[i][j])
+                    else:
+                        return False
+                    
+        return True
+    
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -180,4 +204,13 @@ if __name__ == "__main__":
     # print(Solution.largestInteger(nums=[0,0], k=1))
     # print(Solution.climbStairs(n = 1))
     # print(Solution.threeSum(nums = [1,2,-2,-1]))
-    print(Solution.maxWidthOfVerticalArea(points = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]))
+    # print(Solution.maxWidthOfVerticalArea(points = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]))
+    print(Solution.isValidSudoku([["8","3",".",".","7",".",".",".","."]
+                                ,["6",".",".","1","9","5",".",".","."]
+                                ,[".","9","8",".",".",".",".","6","."]
+                                ,["8",".",".",".","6",".",".",".","3"]
+                                ,["4",".",".","8",".","3",".",".","1"]
+                                ,["7",".",".",".","2",".",".",".","6"]
+                                ,[".","6",".",".",".",".","2","8","."]
+                                ,[".",".",".","4","1","9",".",".","5"]
+                                ,[".",".",".",".","8",".",".","7","9"]]))
