@@ -130,36 +130,44 @@ class Solution(object):
             
         return num2
     
-    def threeSum(self, nums):
-        answer = []
-        print(nums)
-        twoSum = {}
-        for i in range(len(nums)-1):
-            for j in range(i+1, len(nums)):
-                print(twoSum, nums[i], nums[j])
-                for n in twoSum.keys():
-                    if -nums[j] == n:
-                        for val in twoSum[n]:
-                            print('hiiiii', nums[j], val)
+    # def threeSum(self, nums):
+    #     answer = []
+    #     print(nums)
+    #     twoSum = {}
+    #     for i in range(len(nums)-1):
+    #         for j in range(i+1, len(nums)):
+    #             print(twoSum, nums[i], nums[j])
+    #             for n in twoSum.keys():
+    #                 if -nums[j] == n:
+    #                     for val in twoSum[n]:
+    #                         print('hiiiii', nums[j], val)
 
-                            three = tuple(sorted((val[0], val[1], nums[j])))
-                            if three not in answer:
-                                answer.append(three)
-                                print(answer, 'added')
-                            # three = tuple(sorted((val, nums[j])))
-                            # # three = twoSum[]
-                            # if three not in answer:
-                            #     answer.append(three)
+    #                         three = tuple(sorted((val[0], val[1], nums[j])))
+    #                         if three not in answer:
+    #                             answer.append(three)
+    #                             print(answer, 'added')
                         
 
-                pair = tuple(sorted((nums[i], nums[j])))
-                if nums[i] + nums[j] in twoSum:
-                    if pair not in twoSum[nums[i] + nums[j]]:
-                        twoSum[nums[i] + nums[j]].append(pair)
-                else:
-                    twoSum[nums[i] + nums[j]] = [pair]
+    #             pair = tuple(sorted((nums[i], nums[j])))
+    #             if nums[i] + nums[j] in twoSum:
+    #                 if pair not in twoSum[nums[i] + nums[j]]:
+    #                     twoSum[nums[i] + nums[j]].append(pair)
+    #             else:
+    #                 twoSum[nums[i] + nums[j]] = [pair]
 
-        return answer
+    #     return answer
+
+    def maxWidthOfVerticalArea(self, points):
+        max = 0
+        xs = []
+        for i in range(len(points)):
+            xs.append(points[i][0])
+        xs.sort()
+        for i in range(len(xs)-1):
+            if max < abs(xs[i] - xs[i+1]):
+                max = abs(xs[i] - xs[i+1])
+        return max
+    
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -171,4 +179,5 @@ if __name__ == "__main__":
     # print(Solution.lengthOfLastWord(s = "luffy is still joyboy"))
     # print(Solution.largestInteger(nums=[0,0], k=1))
     # print(Solution.climbStairs(n = 1))
-    print(Solution.threeSum(nums = [1,2,-2,-1]))
+    # print(Solution.threeSum(nums = [1,2,-2,-1]))
+    print(Solution.maxWidthOfVerticalArea(points = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]))
