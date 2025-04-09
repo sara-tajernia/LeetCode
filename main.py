@@ -193,6 +193,29 @@ class Solution(object):
         return True
     
 
+    def divide(self, dividend, divisor):
+        sign = (dividend < 0) == (divisor < 0)
+        divisor = abs(divisor)
+        num = abs(dividend)
+        if divisor == 1 or divisor == -1:
+            if num < -2**31:
+                return -2**31
+            elif 2**31 -1 <num:
+                return 2**31-1
+            return num if sign else -num
+        counter = 0
+        while divisor <= num:
+            num -= divisor
+            counter += 1
+        
+        if counter < -2**31:
+            return -2**31
+        elif 2**31 -1 <counter:
+            return 2**31-1
+        return counter if sign else -counter
+
+    
+
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
@@ -205,12 +228,15 @@ if __name__ == "__main__":
     # print(Solution.climbStairs(n = 1))
     # print(Solution.threeSum(nums = [1,2,-2,-1]))
     # print(Solution.maxWidthOfVerticalArea(points = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]))
-    print(Solution.isValidSudoku([["8","3",".",".","7",".",".",".","."]
-                                ,["6",".",".","1","9","5",".",".","."]
-                                ,[".","9","8",".",".",".",".","6","."]
-                                ,["8",".",".",".","6",".",".",".","3"]
-                                ,["4",".",".","8",".","3",".",".","1"]
-                                ,["7",".",".",".","2",".",".",".","6"]
-                                ,[".","6",".",".",".",".","2","8","."]
-                                ,[".",".",".","4","1","9",".",".","5"]
-                                ,[".",".",".",".","8",".",".","7","9"]]))
+    # print(Solution.isValidSudoku([["8","3",".",".","7",".",".",".","."]
+    #                             ,["6",".",".","1","9","5",".",".","."]
+    #                             ,[".","9","8",".",".",".",".","6","."]
+    #                             ,["8",".",".",".","6",".",".",".","3"]
+    #                             ,["4",".",".","8",".","3",".",".","1"]
+    #                             ,["7",".",".",".","2",".",".",".","6"]
+    #                             ,[".","6",".",".",".",".","2","8","."]
+    #                             ,[".",".",".","4","1","9",".",".","5"]
+    #                             ,[".",".",".",".","8",".",".","7","9"]]))
+    print(Solution.divide(dividend = -2147483648, divisor = -1))
+    # print(Solution.divide(dividend = -10, divisor = 1))
+
