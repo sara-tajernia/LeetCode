@@ -193,28 +193,62 @@ class Solution(object):
         return True
     
 
-    def divide(self, dividend, divisor):
-        sign = (dividend < 0) == (divisor < 0)
-        divisor = abs(divisor)
-        num = abs(dividend)
-        if divisor == 1 or divisor == -1:
-            if num < -2**31:
-                return -2**31
-            elif 2**31 -1 <num:
-                return 2**31-1
-            return num if sign else -num
-        counter = 0
-        while divisor <= num:
-            num -= divisor
-            counter += 1
+    # def divide(self, dividend, divisor):
+        # sign = (dividend < 0) == (divisor < 0)
+        # divisor = abs(divisor)
+        # num = abs(dividend)
+        # if divisor == 1 or divisor == -1:
+        #     num = num if sign else -num
+        #     if num < -2**31:
+        #         return -2**31
+        #     elif 2**31 -1 <num:
+        #         return 2**31-1
+        #     return num
+        # counter = 0
+        # while divisor <= num:
+        #     num -= divisor
+        #     counter += 1
         
-        if counter < -2**31:
-            return -2**31
-        elif 2**31 -1 <counter:
-            return 2**31-1
-        return counter if sign else -counter
+        # counter = counter if sign else -counter
+        # if counter < -2**31:
+        #     return -2**31
+        # elif 2**31 -1 <counter:
+        #     return 2**31-1
+        # return counter
 
+    def myPow(self, x, n):
+        results = {1: x}
+        if n < 0:
+            x = 1/x
+            n = -n
+        elif n == 0:
+            return 1
+        answer = x
+        power = 1
+        while power < n:
+            if power < n/2:
+                answer = answer * answer
+                power += power
+            else:
+                answer *= x
+                power += 1
+        return answer
     
+    def convertToTitle(self, columnNumber):
+        outside = columnNumber
+        letters = []
+        while columnNumber > 26:
+            outside = columnNumber//26
+            remain = columnNumber % 26
+            if remain == 0:
+                remain = 26
+                outside -= 1
+            letters.append(chr(64 + remain))
+            columnNumber = outside
+
+        letters.append(chr(64 + outside))
+            
+        return ''.join(letters[::-1])
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -237,6 +271,7 @@ if __name__ == "__main__":
     #                             ,[".","6",".",".",".",".","2","8","."]
     #                             ,[".",".",".","4","1","9",".",".","5"]
     #                             ,[".",".",".",".","8",".",".","7","9"]]))
-    print(Solution.divide(dividend = -2147483648, divisor = -1))
-    # print(Solution.divide(dividend = -10, divisor = 1))
+    # print(Solution.divide(dividend = -2147483648, divisor = 1))
+    # print(Solution.myPow(x = 0.00001, n = 2147483647))
+    print(Solution.convertToTitle(columnNumber=702))
 
