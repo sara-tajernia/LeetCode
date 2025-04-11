@@ -262,6 +262,20 @@ class Solution(object):
 
         return matrix
 
+    def numOfSubarrays(self, arr):
+        counter = 0
+        for i in range(len(arr)):
+            sub = []
+            sum_sub = 0
+            for j in range(i, len(arr)):
+                sub.append(arr[j])
+                sum_sub += arr[j]
+                if sum_sub % 2 == 1:
+                    counter += 1  
+                if sum_sub == 0:
+                    return 0              
+        return counter
+
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
@@ -286,5 +300,6 @@ if __name__ == "__main__":
     # print(Solution.divide(dividend = -2147483648, divisor = 1))
     # print(Solution.myPow(x = 0.00001, n = 2147483647))
     # print(Solution.convertToTitle(columnNumber=702))
-    print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
+    # print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
+    print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
 
