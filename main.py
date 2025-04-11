@@ -249,6 +249,18 @@ class Solution(object):
         letters.append(chr(64 + outside))
             
         return ''.join(letters[::-1])
+    
+    def rotate(self, matrix):
+        n = len(matrix)
+        for i in range(n // 2):
+            matrix[i], matrix[n - 1 - i] = matrix[n - 1 - i], matrix[i]
+
+        for i in range(len(matrix)):
+            for j in range(i, len(matrix[0])):
+                # if i <=j:
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+        return matrix
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -273,5 +285,6 @@ if __name__ == "__main__":
     #                             ,[".",".",".",".","8",".",".","7","9"]]))
     # print(Solution.divide(dividend = -2147483648, divisor = 1))
     # print(Solution.myPow(x = 0.00001, n = 2147483647))
-    print(Solution.convertToTitle(columnNumber=702))
+    # print(Solution.convertToTitle(columnNumber=702))
+    print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
 
