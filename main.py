@@ -275,6 +275,19 @@ class Solution(object):
                 if sum_sub == 0:
                     return 0              
         return counter
+    
+    def permute(self, nums):
+        result = []
+
+        def backtrack(path, remain):
+            if not remain:
+                result.append(path)
+                return
+            for i in range(len(remain)):
+                backtrack(path + [remain[i]], remain[:i] + remain[i+1:])
+            
+        backtrack([], nums)
+        return result
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -301,5 +314,6 @@ if __name__ == "__main__":
     # print(Solution.myPow(x = 0.00001, n = 2147483647))
     # print(Solution.convertToTitle(columnNumber=702))
     # print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
-    print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
+    # print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
+    print(Solution.permute(nums=[1,2,3]))
 
