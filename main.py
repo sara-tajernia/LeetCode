@@ -288,6 +288,20 @@ class Solution(object):
             
         backtrack([], nums)
         return result
+    
+    def isHappy(self, n):
+        checked = []
+        while n != 1:
+            value = 0
+            digits = [int(digit) for digit in str(n)]
+            for digit in digits:
+                value += digit*digit
+            if value not in checked:
+                checked.append(value)
+                n = value
+            else:
+                return False
+        return True
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -315,5 +329,5 @@ if __name__ == "__main__":
     # print(Solution.convertToTitle(columnNumber=702))
     # print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
     # print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
-    print(Solution.permute(nums=[1,2,3]))
-
+    # print(Solution.permute(nums=[1,2,3]))
+    print(Solution.isHappy(n=2)) 
