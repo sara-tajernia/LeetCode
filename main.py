@@ -303,6 +303,23 @@ class Solution(object):
                 return False
         return True
 
+    
+    def combinationSum(self, candidates, target):
+        result = []
+
+        def backtrack(path, target, start):
+            if target == 0:
+                result.append(path)
+                return
+            if target < 0:
+                return
+            for i in range(start, len(candidates)):
+                backtrack(path + [candidates[i]], target - candidates[i], i)
+
+        backtrack([], target, 0)
+        return result
+
+
 if __name__ == "__main__":
     Solution = Solution()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
@@ -330,4 +347,6 @@ if __name__ == "__main__":
     # print(Solution.rotate(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
     # print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
     # print(Solution.permute(nums=[1,2,3]))
-    print(Solution.isHappy(n=2)) 
+    # print(Solution.isHappy(n=2)) 
+    print(Solution.combinationSum(candidates = [2], target = 1))
+
