@@ -319,6 +319,76 @@ class Solution(object):
         backtrack([], target, 0)
         return result
 
+    def search(self, nums, target):
+        if len(nums) == 1:
+            if nums[0] == target:
+                return 0
+            else:
+                return -1
+            
+        left = 0
+        right = len(nums)-1
+        mid = int((right-left)/2) + left
+
+        while left+1 != right:
+            mid = int((right-left)/2) + left
+            if nums[mid] < nums[left]:
+                right = mid
+            elif nums[right] < nums[mid]:
+                left = mid 
+
+        print(left, mid, right)
+        if target <= nums[len(nums) -1]:
+            search = nums[right:]
+            print('111111111')
+            counter = right
+        else:
+            search = nums[:right]
+            print('22222222')
+            counter = 0
+
+        print(left, search)
+
+
+
+        start = 0
+        end = len(search) -1
+        if target == search[start]:
+            print('first')
+            return counter
+        if target == search[-1]:
+            print('second')
+
+            return len(search) -1 + counter 
+        
+        print(search)
+
+        while start <= end:
+            midel = int((end - start) / 2) + start
+            print(search)
+            if search[midel] == target:
+                print('hiiiii',counter,  midel)
+                return counter + midel
+            elif search[midel] < search[start]:
+                print(1, start, midel, end)
+                end = midel - 1
+            elif search[end] < search[midel]:
+                start = midel + 1
+                print(2, start, midel, end)
+            else:
+                if target < search[midel]:
+                    end = midel - 1
+                else:
+                    start = midel + 1
+
+            print(start, midel, end, '\n')
+        print(987654, search)
+        return -1  
+
+
+
+        # return
+
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -348,5 +418,7 @@ if __name__ == "__main__":
     # print(Solution.numOfSubarrays(arr=[1,2,3,4,5,6,7]))
     # print(Solution.permute(nums=[1,2,3]))
     # print(Solution.isHappy(n=2)) 
-    print(Solution.combinationSum(candidates = [2], target = 1))
+    # print(Solution.combinationSum(candidates = [2], target = 1))
+    print(Solution.search(nums = [1,3], target =1))
+
 
