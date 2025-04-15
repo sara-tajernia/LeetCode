@@ -385,7 +385,37 @@ class Solution(object):
         print(987654, search)
         return -1  
 
+    def mostProfitablePath(self, edges, bob, amount):
+        print(edges)
+        return
+    
+    def BFS(self, start, edges, amount):
+        # Create a graph from the edge list
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)  # Asvalueing it's an undirected graph
+        print(graph)
+        
+        # BFS setup
+        queue = deque([start])
+        visited = set([start])
+        max_amount = amount[start]  # Initialize max_amount with the start node's amount
 
+        # BFS loop
+        while queue:
+            current = queue.popleft()
+            # Update the maximum amount found so far
+            max_amount = max(max_amount, amount[current])
+            
+            # Visit all adjacent nodes
+            for neighbor in graph[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+        print(max_amount)
+        return max_amount
+    
 
         # return
 
@@ -419,6 +449,8 @@ if __name__ == "__main__":
     # print(Solution.permute(nums=[1,2,3]))
     # print(Solution.isHappy(n=2)) 
     # print(Solution.combinationSum(candidates = [2], target = 1))
-    print(Solution.search(nums = [1,3], target =1))
+    # print(Solution.search(nums = [1,3], target =1))
+    print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
+
 
 
