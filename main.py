@@ -319,71 +319,71 @@ class Solution(object):
         backtrack([], target, 0)
         return result
 
-    def search(self, nums, target):
-        if len(nums) == 1:
-            if nums[0] == target:
-                return 0
-            else:
-                return -1
+    # def search(self, nums, target):
+    #     if len(nums) == 1:
+    #         if nums[0] == target:
+    #             return 0
+    #         else:
+    #             return -1
             
-        left = 0
-        right = len(nums)-1
-        mid = int((right-left)/2) + left
+    #     left = 0
+    #     right = len(nums)-1
+    #     mid = int((right-left)/2) + left
 
-        while left+1 != right:
-            mid = int((right-left)/2) + left
-            if nums[mid] < nums[left]:
-                right = mid
-            elif nums[right] < nums[mid]:
-                left = mid 
+    #     while left+1 != right:
+    #         mid = int((right-left)/2) + left
+    #         if nums[mid] < nums[left]:
+    #             right = mid
+    #         elif nums[right] < nums[mid]:
+    #             left = mid 
 
-        print(left, mid, right)
-        if target <= nums[len(nums) -1]:
-            search = nums[right:]
-            print('111111111')
-            counter = right
-        else:
-            search = nums[:right]
-            print('22222222')
-            counter = 0
+    #     print(left, mid, right)
+    #     if target <= nums[len(nums) -1]:
+    #         search = nums[right:]
+    #         print('111111111')
+    #         counter = right
+    #     else:
+    #         search = nums[:right]
+    #         print('22222222')
+    #         counter = 0
 
-        print(left, search)
+    #     print(left, search)
 
 
 
-        start = 0
-        end = len(search) -1
-        if target == search[start]:
-            print('first')
-            return counter
-        if target == search[-1]:
-            print('second')
+    #     start = 0
+    #     end = len(search) -1
+    #     if target == search[start]:
+    #         print('first')
+    #         return counter
+    #     if target == search[-1]:
+    #         print('second')
 
-            return len(search) -1 + counter 
+    #         return len(search) -1 + counter 
         
-        print(search)
+    #     print(search)
 
-        while start <= end:
-            midel = int((end - start) / 2) + start
-            print(search)
-            if search[midel] == target:
-                print('hiiiii',counter,  midel)
-                return counter + midel
-            elif search[midel] < search[start]:
-                print(1, start, midel, end)
-                end = midel - 1
-            elif search[end] < search[midel]:
-                start = midel + 1
-                print(2, start, midel, end)
-            else:
-                if target < search[midel]:
-                    end = midel - 1
-                else:
-                    start = midel + 1
+    #     while start <= end:
+    #         midel = int((end - start) / 2) + start
+    #         print(search)
+    #         if search[midel] == target:
+    #             print('hiiiii',counter,  midel)
+    #             return counter + midel
+    #         elif search[midel] < search[start]:
+    #             print(1, start, midel, end)
+    #             end = midel - 1
+    #         elif search[end] < search[midel]:
+    #             start = midel + 1
+    #             print(2, start, midel, end)
+    #         else:
+    #             if target < search[midel]:
+    #                 end = midel - 1
+    #             else:
+    #                 start = midel + 1
 
-            print(start, midel, end, '\n')
-        print(987654, search)
-        return -1  
+    #         print(start, midel, end, '\n')
+    #     print(987654, search)
+    #     return -1  
 
     def mostProfitablePath(self, edges, bob, amount):
         print(edges)
@@ -417,7 +417,16 @@ class Solution(object):
         return max_amount
     
 
-        # return
+    def groupAnagrams(self, strs):
+        groups = {}
+        for word in strs:
+            sorted_letters = tuple(sorted(word))
+            if sorted_letters in groups:
+                groups[sorted_letters].append(word)
+            else:
+                groups[sorted_letters] = [word]
+
+        return list(groups.values())
 
 
 if __name__ == "__main__":
@@ -450,7 +459,8 @@ if __name__ == "__main__":
     # print(Solution.isHappy(n=2)) 
     # print(Solution.combinationSum(candidates = [2], target = 1))
     # print(Solution.search(nums = [1,3], target =1))
-    print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
+    # print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
+    print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
 
 
 
