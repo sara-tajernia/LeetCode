@@ -427,6 +427,32 @@ class Solution(object):
                 groups[sorted_letters] = [word]
 
         return list(groups.values())
+    
+    def countAndSay(self, n):
+        if n == 1:
+            return '1'
+
+        num = ['1', '1']
+        for i in range(n-2):
+            changed = []
+            counter = 1
+            for i in range(len(num)):
+                if i != len(num) -1:
+                    if num[i] == num[i+1]:
+                        counter += 1
+                    else:
+                        changed.append(str(counter))
+                        changed.append(num[i])
+                        counter = 1
+                else:
+                    # print('auhdsfcaz',changed)
+                    changed.append(str(counter))
+                    changed.append(num[i])
+                    counter = 1
+
+            num = changed
+        return ''.join(num)
+
 
 
 if __name__ == "__main__":
@@ -460,7 +486,8 @@ if __name__ == "__main__":
     # print(Solution.combinationSum(candidates = [2], target = 1))
     # print(Solution.search(nums = [1,3], target =1))
     # print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
-    print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
+    # print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
+    print(Solution.countAndSay(n=0))
 
 
 
