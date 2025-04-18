@@ -488,6 +488,7 @@ if __name__ == "__main__":
     # print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
     # print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
     print(Solution.countAndSay(n=0))
+    print()
 
 
 
