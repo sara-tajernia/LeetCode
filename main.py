@@ -1,5 +1,6 @@
 from collections import Counter
 from collections import deque, defaultdict
+import math
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -452,6 +453,18 @@ class Solution(object):
 
             num = changed
         return ''.join(num)
+    
+    def majorityElement(self, nums):
+        majority = {}
+        for n in nums:
+            if n in majority:
+                majority[n] += 1
+            else:
+                majority[n] = 1
+
+        return max(majority, key=majority.get)
+
+
 
 
 
@@ -487,10 +500,8 @@ if __name__ == "__main__":
     # print(Solution.search(nums = [1,3], target =1))
     # print(Solution.mostProfitablePath(edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount= [-2,4,2,-4,6]))
     # print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
-    print(Solution.countAndSay(n=0))
-    print(Solution)
-    print()
-    print()
+    # print(Solution.countAndSay(n=0))
+    print(Solution.majorityElement(nums = [2,2,1,1,1,2,2]))
 
 
 
