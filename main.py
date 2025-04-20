@@ -467,6 +467,25 @@ class Solution(object):
 
     def containsDuplicate(self, nums):
         return len(nums) != len(set(nums))
+    
+    def isIsomorphic(self, s, t):
+        isomorphic = {}
+        s = list(s)
+        t = list(t)
+        if len(s) != len(t):
+            return False
+            
+        for char in range(len(s)):
+            # print(isomorphic.values)
+            if s[char] not in isomorphic:
+                if t[char] not in isomorphic.values():
+                    isomorphic[s[char]] = t[char]
+                else:
+                    return False
+            else:
+                if isomorphic[s[char]] != t[char]:
+                    return False
+        return True
 
 
 
@@ -504,6 +523,7 @@ if __name__ == "__main__":
     # print(Solution.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
     # print(Solution.countAndSay(n=0))
     # print(Solution.majorityElement(nums = [2,2,1,1,1,2,2]))
-    print(Solution.containsDuplicate(nums=[1,2,3,4,1]))
+    # print(Solution.containsDuplicate(nums=[1,2,3,4,1])) 
+    print(Solution.isIsomorphic(s="badc", t = "baba"))
 
 
