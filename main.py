@@ -496,25 +496,17 @@ class Solution(object):
         position_value = nums[0]
     
         while position + position_value + 1 < len(nums):
-
-            print(nums[position+1 : position+position_value+1])
-            window = nums[position+1 : position + position_value + 1]
-            max_value = max(window)
-            max_index_in_window = len(window) - 1 - window[::-1].index(max_value)
-            max_index = max_index_in_window + position + 1
-            print(max_value, max_index)
+            max_value = 0
+            max_index = 0
+            for i in range(position+1,  position + position_value + 1):
+                if max_value <= nums[i] + i:
+                    max_value = nums[i] + i
+                    max_index = i
+            
             jumps += 1
 
             position = max_index
-            position_value = max_value
-
-
-
-
-
-
-
-
+            position_value = nums[position]
 
         return jumps + 1
 
@@ -556,7 +548,7 @@ if __name__ == "__main__":
     # print(Solution.majorityElement(nums = [2,2,1,1,1,2,2]))
     # print(Solution.containsDuplicate(nums=[1,2,3,4,1])) 
     # print(Solution.isIsomorphic(s="badc", t = "baba"))
-    print(Solution.jump(nums = [10,9,8,7,6,5,4,3,2,1,1,0]))
+    print(Solution.jump(nums = [2,3,1,1,4]))
 
 
 
