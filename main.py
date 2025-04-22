@@ -529,6 +529,10 @@ class Solution(object):
                 longest = even
 
         return longest
+    
+    def uniquePaths(self, m, n):
+        # return math.comb(m+n-2, m-1)
+        return math.factorial(n+m-2) // (math.factorial(n-1) * math.factorial(m-1))
 
 
 if __name__ == "__main__":
@@ -568,7 +572,7 @@ if __name__ == "__main__":
     # print(Solution.containsDuplicate(nums=[1,2,3,4,1])) 
     # print(Solution.isIsomorphic(s="badc", t = "baba"))
     # print(Solution.jump(nums = [2,3,1,1,4]))
-    print(Solution.longestPalindrome(s = "ksjdiabcdcbajskducbs"))
-
+    # print(Solution.longestPalindrome(s = "ksjdiabcdcbajskducbs"))
+    print(Solution.uniquePaths(m = 3, n = 7))
 
 
