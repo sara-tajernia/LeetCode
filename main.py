@@ -531,8 +531,15 @@ class Solution(object):
         return longest
     
     def uniquePaths(self, m, n):
-        # return math.comb(m+n-2, m-1)
         return math.factorial(n+m-2) // (math.factorial(n-1) * math.factorial(m-1))
+    
+    def missingNumber(self, nums):
+        result = [-1] * (len(nums)+1)
+        for n in nums:
+            result[n] = n
+        for i in range(len(result)):
+            if result[i] == -1:
+                return i 
 
 
 if __name__ == "__main__":
@@ -573,6 +580,7 @@ if __name__ == "__main__":
     # print(Solution.isIsomorphic(s="badc", t = "baba"))
     # print(Solution.jump(nums = [2,3,1,1,4]))
     # print(Solution.longestPalindrome(s = "ksjdiabcdcbajskducbs"))
-    print(Solution.uniquePaths(m = 3, n = 7))
+    # print(Solution.uniquePaths(m = 3, n = 7))
+    print(Solution.missingNumber(nums = [3, 0,1]))
 
 
