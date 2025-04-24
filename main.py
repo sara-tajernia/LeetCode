@@ -540,6 +540,16 @@ class Solution(object):
         for i in range(len(result)):
             if result[i] == -1:
                 return i 
+            
+    def moveZeroes(self, nums):
+        for i in range(len(nums)):
+            print(123456, nums[i])
+            if nums[i] == 0:
+                nums.pop(i)
+                print('removed', nums)
+                nums.append(0)
+                print('added', nums)
+        return nums
 
 
 if __name__ == "__main__":
@@ -581,6 +591,7 @@ if __name__ == "__main__":
     # print(Solution.jump(nums = [2,3,1,1,4]))
     # print(Solution.longestPalindrome(s = "ksjdiabcdcbajskducbs"))
     # print(Solution.uniquePaths(m = 3, n = 7))
-    print(Solution.missingNumber(nums = [3, 0,1]))
+    # print(Solution.missingNumber(nums = [3, 0,1]))
+    print(Solution.moveZeroes(nums = [0,0,1]))
 
 
