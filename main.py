@@ -551,6 +551,8 @@ class Solution(object):
                 print('added', nums)
         return nums
 
+    def canWinNim(self, n):
+        return False if n % 4 == 0 else True
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -592,6 +594,6 @@ if __name__ == "__main__":
     # print(Solution.longestPalindrome(s = "ksjdiabcdcbajskducbs"))
     # print(Solution.uniquePaths(m = 3, n = 7))
     # print(Solution.missingNumber(nums = [3, 0,1]))
-    print(Solution.moveZeroes(nums = [0,0,1]))
-
+    # print(Solution.moveZeroes(nums = [0,0,1]))
+    print(Solution.canWinNim(n = 1))
 
