@@ -553,6 +553,17 @@ class Solution(object):
 
     def canWinNim(self, n):
         return False if n % 4 == 0 else True
+    
+    def containsNearbyDuplicate(self, nums, k):
+        for i in range(len(nums)):
+            for j in range(i+1, i+k+1):
+                if j < len(nums):
+                    print(nums[i], nums[j])
+                    if nums[i] == nums[j]:
+                        print('this', nums[i], nums[j])
+                        return True
+            
+        return False
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -595,5 +606,6 @@ if __name__ == "__main__":
     # print(Solution.uniquePaths(m = 3, n = 7))
     # print(Solution.missingNumber(nums = [3, 0,1]))
     # print(Solution.moveZeroes(nums = [0,0,1]))
-    print(Solution.canWinNim(n = 1))
+    # print(Solution.canWinNim(n = 1))
+    print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
 
