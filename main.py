@@ -564,6 +564,11 @@ class Solution(object):
                         return True
             
         return False
+    
+    def addDigits(self, num):
+        while 9 < num:
+            num =  num//10 + num%10
+        return num
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -607,5 +612,6 @@ if __name__ == "__main__":
     # print(Solution.missingNumber(nums = [3, 0,1]))
     # print(Solution.moveZeroes(nums = [0,0,1]))
     # print(Solution.canWinNim(n = 1))
-    print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
+    # print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
+    print(Solution.addDigits(num = 38))
 
