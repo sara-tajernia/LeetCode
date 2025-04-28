@@ -569,6 +569,26 @@ class Solution(object):
         while 9 < num:
             num =  num//10 + num%10
         return num
+    
+    def wordPattern(self, pattern, s):
+        map1 = {}
+        map2 = {}
+        pattern = list(pattern)
+        s = s.split()
+        if len(pattern) != len(s):
+            return False
+        for i in range(len(pattern)):
+            if pattern[i] in map1:
+                if map1[pattern[i]] != s[i]:
+                    return False
+            else:
+                map1[pattern[i]] = s[i]
+            if s[i] in map2:
+                if map2[s[i]] != pattern[i]:
+                    return False
+            else:
+                map2[s[i]] = pattern[i]
+        return True
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -613,5 +633,6 @@ if __name__ == "__main__":
     # print(Solution.moveZeroes(nums = [0,0,1]))
     # print(Solution.canWinNim(n = 1))
     # print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
-    print(Solution.addDigits(num = 38))
+    # print(Solution.addDigits(num = 38))
+    print(Solution.wordPattern(pattern = "aaaa", s = "dog cat cat dog"))
 
