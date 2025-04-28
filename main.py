@@ -595,6 +595,14 @@ class Solution(object):
         # print(x)
         # return x ** 3 == n
 
+        if n < 0:
+                return False  
+        i = 1
+        while i * i * i <= n:
+            if i * i * i == n:
+                return True
+            i += 1
+        return False
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -641,5 +649,5 @@ if __name__ == "__main__":
     # print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
     # print(Solution.addDigits(num = 38))
     # print(Solution.wordPattern(pattern = "aaaa", s = "dog cat cat dog"))
-    print(Solution.isPowerOfThree(n = 28))
+    print(Solution.isPowerOfThree(n = 9))
 
