@@ -618,6 +618,21 @@ class Solution(object):
                 max_profit = max(max_profit, profit)
 
         return max_profit
+    
+
+    def fizzBuzz(self, n):
+        answer = []
+        for i in range(1, n+1):
+            if i % 15  == 0:
+                answer.append("FizzBuzz")
+            elif i % 5 == 0:
+                answer.append("Buzz")
+            elif i % 3 == 0:
+                answer.append("Fizz")
+            else:
+                answer.append(str(i))
+
+        return answer
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -665,5 +680,6 @@ if __name__ == "__main__":
     # print(Solution.addDigits(num = 38))
     # print(Solution.wordPattern(pattern = "aaaa", s = "dog cat cat dog"))
     # print(Solution.isPowerOfThree(n = 9))
-    print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
+    # print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
+    print(Solution.fizzBuzz(n = 15))
 
