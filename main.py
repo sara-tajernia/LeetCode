@@ -603,6 +603,21 @@ class Solution(object):
                 return True
             i += 1
         return False
+    
+
+    def maxProfit(self, prices):
+        min_price = -1
+        max_profit = 0
+        max_price = -1
+        for price in prices:
+            if price < min_price:
+                min_price = price
+                print('change min', min_price)
+            else:
+                profit = price - min_price  # Potential profit
+                max_profit = max(max_profit, profit)
+
+        return max_profit
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -649,5 +664,6 @@ if __name__ == "__main__":
     # print(Solution.containsNearbyDuplicate(nums = [1,2,3,1], k = 3))
     # print(Solution.addDigits(num = 38))
     # print(Solution.wordPattern(pattern = "aaaa", s = "dog cat cat dog"))
-    print(Solution.isPowerOfThree(n = 9))
+    # print(Solution.isPowerOfThree(n = 9))
+    print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
 
