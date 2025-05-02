@@ -633,6 +633,15 @@ class Solution(object):
                 answer.append(str(i))
 
         return answer
+    
+    def numJewelsInStones(self, jewels, stones):
+        jewels = list(jewels)
+        stones = list(stones)
+        counter = 0
+        for s in stones:
+            if s in jewels:
+                counter += 1
+        return counter
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -681,5 +690,6 @@ if __name__ == "__main__":
     # print(Solution.wordPattern(pattern = "aaaa", s = "dog cat cat dog"))
     # print(Solution.isPowerOfThree(n = 9))
     # print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
-    print(Solution.fizzBuzz(n = 15))
+    # print(Solution.fizzBuzz(n = 15))
+    print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
 
