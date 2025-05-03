@@ -672,19 +672,15 @@ class Solution(object):
             "y": "-.--",
             "z": "--.."
         }
+        strings = []
         for w in words:
-            strs = []
             dot_dash = ''
             word = list(w)
-            print(word)
             for letter in word:
                 dot_dash += letters[letter]
-            print(dot_dash, strs)
-            if dot_dash not in strs:
-                print('added')
-                strs.append(dot_dash)
-        print(strs)
-        return len(strs)
+            if dot_dash not in strings:
+                strings.append(dot_dash)
+        return len(strings)
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -735,4 +731,4 @@ if __name__ == "__main__":
     # print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
     # print(Solution.fizzBuzz(n = 15))
     # print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
-    print(Solution.uniqueMorseRepresentations(words = ["gin","zen","gig","msg"]))
+    print(Solution.uniqueMorseRepresentations(words = ["a"]))
