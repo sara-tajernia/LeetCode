@@ -642,6 +642,38 @@ class Solution(object):
             if s in jewels:
                 counter += 1
         return counter
+    
+    def uniqueMorseRepresentations(self, words):
+        letters = {
+            "a": ".-",
+            "b": "-...",
+            "c": "-.-.",
+            "d": "-..",
+            "e": ".",
+            "f": "..-.",
+            "g": "--.",
+            "h": "....",
+            "i": "..",
+            "j": ".---",
+            "k": "-.-",
+            "l": ".-..",
+            "m": "--",
+            "n": "-.",
+            "o": "---",
+            "p": ".--.",
+            "q": "--.-",
+            "r": ".-.",
+            "s": "...",
+            "t": "-",
+            "u": "..-",
+            "v": "...-",
+            "w": ".--",
+            "x": "-..-",
+            "y": "-.--",
+            "z": "--.."
+        }
+
+        return
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -691,5 +723,5 @@ if __name__ == "__main__":
     # print(Solution.isPowerOfThree(n = 9))
     # print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
     # print(Solution.fizzBuzz(n = 15))
-    print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
-
+    # print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
+    print(Solution.uniqueMorseRepresentations(words = ["gin","zen","gig","msg"]))
