@@ -672,9 +672,19 @@ class Solution(object):
             "y": "-.--",
             "z": "--.."
         }
-        
-
-        return
+        for w in words:
+            strs = []
+            dot_dash = ''
+            word = list(w)
+            print(word)
+            for letter in word:
+                dot_dash += letters[letter]
+            print(dot_dash, strs)
+            if dot_dash not in strs:
+                print('added')
+                strs.append(dot_dash)
+        print(strs)
+        return len(strs)
 
 if __name__ == "__main__":
     Solution = Solution()
