@@ -736,7 +736,7 @@ class Solution(object):
         return bin(xor).count('1')
     
     def islandPerimeter(self, grid):
-        return
+        return grid
 
     
 
@@ -797,4 +797,5 @@ if __name__ == "__main__":
     # print(Solution.transpose(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
     # print(Solution.flipAndInvertImage(image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
     # print(Solution.numberOfLines(widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"))
-    print(Solution.numberOfLines(x = 1, y = 4))
+    # print(Solution.numberOfLines(x = 1, y = 4))
+    print(Solution.islandPerimeter( grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]))
