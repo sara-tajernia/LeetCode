@@ -732,7 +732,8 @@ class Solution(object):
     
 
     def hammingDistance(self, x, y):
-        return
+        xor = x ^ y
+        return bin(xor).count('1')
 
     
 
