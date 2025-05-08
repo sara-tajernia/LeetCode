@@ -755,6 +755,8 @@ class Solution(object):
                         cnt += 1
         return cnt
 
+    def findComplement(self, num):
+        return
     
 
 
