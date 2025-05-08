@@ -756,7 +756,8 @@ class Solution(object):
         return cnt
 
     def findComplement(self, num):
-        return
+        mask = (1 << num.bit_length()) - 1
+        return mask ^ num
     
 
 
