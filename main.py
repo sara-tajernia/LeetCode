@@ -771,6 +771,12 @@ class Solution(object):
             else:
                 cur = 0
         return res
+    
+    def diameterOfBinaryTree(self, root):
+        return
+
+
+
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -828,8 +834,8 @@ if __name__ == "__main__":
     # print(Solution.numberOfLines(widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"))
     # print(Solution.numberOfLines(x = 1, y = 4))
     # print(Solution.islandPerimeter( grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]))
-    print(Solution.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1]))
-
+    # print(Solution.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1]))
+    print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5]))
 
 
 
