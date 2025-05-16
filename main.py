@@ -718,7 +718,7 @@ class Solution(object):
     
     def numberOfLines(self, widths, s):
                 
-        return [lines, curr_width]
+        return [ widths, s]
     
 
 
