@@ -716,6 +716,20 @@ class Solution(object):
                     image[i][j] = 1
         return image
     
+    def numberOfLines(self, widths, s):
+        lines = 1
+        curr_width = 0
+        
+        for char in s:
+            w = widths[ord(char) - ord('a')]
+            if curr_width + w > 100:
+                lines += 1
+                curr_width = w
+            else:
+                curr_width += w
+                
+        return [lines, curr_width]
+    
 
 
     
@@ -772,6 +786,6 @@ if __name__ == "__main__":
     # print(Solution.uniqueMorseRepresentations(words = ["a"]))
     # print(Solution.countPrimeSetBits(left = 6, right = 10))
     # print(Solution.transpose(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
-    print(Solution.flipAndInvertImage(image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
-
+    # print(Solution.flipAndInvertImage(image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
+    print(Solution.numberOfLines(widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"))
 
