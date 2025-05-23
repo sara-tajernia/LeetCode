@@ -704,6 +704,21 @@ class Solution(object):
             tran.append(index)
         return tran
     
+    def flipAndInvertImage(self, image):
+        for i in range(len(image)):
+            image[i] = image[i][::-1]
+
+        for i in range(len(image)):
+            for j in range(len(image[i])):
+                if image[i][j] == 1:
+                    image[i][j] = 0
+                else:
+                    image[i][j] = 1
+        return image
+    
+
+
+    
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -756,4 +771,7 @@ if __name__ == "__main__":
     # print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
     # print(Solution.uniqueMorseRepresentations(words = ["a"]))
     # print(Solution.countPrimeSetBits(left = 6, right = 10))
-    print(Solution.transpose(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
+    # print(Solution.transpose(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
+    print(Solution.flipAndInvertImage(image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
+
+
