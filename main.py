@@ -695,6 +695,15 @@ class Solution(object):
                 count += 1
         return count
     
+    def transpose(self, matrix):
+        tran = []
+        for i in range(len(matrix[0])):
+            index = []
+            for j in range(len(matrix)):
+                index.append(matrix[j][i])
+            tran.append(index)
+        return tran
+    
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -746,4 +755,5 @@ if __name__ == "__main__":
     # print(Solution.fizzBuzz(n = 15))
     # print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
     # print(Solution.uniqueMorseRepresentations(words = ["a"]))
-    print(Solution.countPrimeSetBits(left = 6, right = 10))
+    # print(Solution.countPrimeSetBits(left = 6, right = 10))
+    print(Solution.transpose(matrix = [[1,2,3],[4,5,6],[7,8,9]]))
