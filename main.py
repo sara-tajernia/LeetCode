@@ -681,6 +681,19 @@ class Solution(object):
             if dot_dash not in strings:
                 strings.append(dot_dash)
         return len(strings)
+    
+
+    def countPrimeSetBits(self, left, right):
+        prime_set = {2, 3, 5, 7, 11, 13, 17, 19}
+        
+        def count_set_bits(n):
+            return bin(n).count('1')
+        
+        count = 0
+        for i in range(left, right + 1):
+            if count_set_bits(i) in prime_set:
+                count += 1
+        return count
 
 if __name__ == "__main__":
     Solution = Solution()
@@ -731,4 +744,5 @@ if __name__ == "__main__":
     # print(Solution.maxProfit(prices = [7,1,5,3,6,4]))
     # print(Solution.fizzBuzz(n = 15))
     # print(Solution.numJewelsInStones(jewels = "z", stones = "ZZ"))
-    print(Solution.uniqueMorseRepresentations(words = ["a"]))
+    # print(Solution.uniqueMorseRepresentations(words = ["a"]))
+    print(Solution.countPrimeSetBits(left = 6, right = 10))
