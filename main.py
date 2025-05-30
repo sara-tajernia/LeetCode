@@ -694,6 +694,7 @@ class Solution(object):
             if count_set_bits(i) in prime_set:
                 count += 1
         return count
+    
 
 if __name__ == "__main__":
     Solution = Solution()
