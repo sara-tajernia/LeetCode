@@ -773,8 +773,7 @@ class Solution(object):
         return res
     
     def diameterOfBinaryTree(self, root):
-        self.max_diameter = 0
-        
+        self.max_diameter = 0  
         def dfs(node):
             if not node:
                 return 0
@@ -849,7 +848,7 @@ if __name__ == "__main__":
     # print(Solution.numberOfLines(x = 1, y = 4))
     # print(Solution.islandPerimeter( grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]))
     # print(Solution.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1]))
-    print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5]))
+    print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5,6,7,8]))
 
 
 
