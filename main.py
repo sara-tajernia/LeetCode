@@ -787,6 +787,17 @@ class Solution(object):
             
         dfs(root)
         return self.max_diameter
+    
+
+    def countBits(self, n):
+        # bits = []
+        # for i in range(n+1):
+        #     binary_digits = bin(i)[2:]
+        #     print(binary_digits)  
+
+        n = list(range(n+1))
+
+        return [bin(n).count('1') for n in n]
 
 
 
@@ -848,7 +859,7 @@ if __name__ == "__main__":
     # print(Solution.numberOfLines(x = 1, y = 4))
     # print(Solution.islandPerimeter( grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]))
     # print(Solution.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1]))
-    print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5,6,7,8]))
-
+    # print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5,6,7,8]))
+    print(Solution.countBits(5))
 
 
