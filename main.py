@@ -790,13 +790,7 @@ class Solution(object):
     
 
     def countBits(self, n):
-        # bits = []
-        # for i in range(n+1):
-        #     binary_digits = bin(i)[2:]
-        #     print(binary_digits)  
-
         n = list(range(n+1))
-
         return [bin(n).count('1') for n in n]
 
 
