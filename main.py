@@ -794,7 +794,9 @@ class Solution(object):
         return [bin(n).count('1') for n in n]
 
 
-
+    def testing(self):
+        print('testing')
+        return True
 
 if __name__ == "__main__":
     Solution = Solution()
