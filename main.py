@@ -1,6 +1,17 @@
 from collections import Counter
 from collections import deque, defaultdict
 import math
+from openai import OpenAI
+import base64
+
+
+import asyncio
+import websockets
+import json
+import sounddevice as sd
+import numpy as np
+
+
 import bisect
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -16,9 +27,7 @@ class Solution(object):
             current.append(letter)
 
         return max(len(current), len(saved))
-
-        
-        
+  
     def findMedianSortedArrays(self, nums1, nums2):
         counter1 = 0
         counter2 = 0
@@ -32,8 +41,7 @@ class Solution(object):
             return  (nums1[counter1] + nums2[counter2])/2
         else:
             return nums1[counter1] if nums1[counter1] < nums2[counter2] else nums2[counter2]
- 
-        
+      
     def reverse(self, x):
         result = 0
         num = abs(x)
@@ -304,7 +312,6 @@ class Solution(object):
                 return False
         return True
 
-    
     def combinationSum(self, candidates, target):
         result = []
 
@@ -417,7 +424,6 @@ class Solution(object):
         print(max_amount)
         return max_amount
     
-
     def groupAnagrams(self, strs):
         groups = {}
         for word in strs:
@@ -463,7 +469,6 @@ class Solution(object):
                 majority[n] = 1
 
         return max(majority, key=majority.get)
-
 
     def containsDuplicate(self, nums):
         return len(nums) != len(set(nums))
@@ -604,7 +609,6 @@ class Solution(object):
             i += 1
         return False
     
-
     def maxProfit(self, prices):
         min_price = -1
         max_profit = 0
@@ -619,7 +623,6 @@ class Solution(object):
 
         return max_profit
     
-
     def fizzBuzz(self, n):
         answer = []
         for i in range(1, n+1):
@@ -682,7 +685,6 @@ class Solution(object):
                 strings.append(dot_dash)
         return len(strings)
     
-
     def countPrimeSetBits(self, left, right):
         prime_set = {2, 3, 5, 7, 11, 13, 17, 19}
         
@@ -730,7 +732,6 @@ class Solution(object):
                 
         return [lines, curr_width]
     
-
     def hammingDistance(self, x, y):
         xor = x ^ y
         return bin(xor).count('1')
@@ -759,7 +760,6 @@ class Solution(object):
         mask = (1 << num.bit_length()) - 1
         return mask ^ num
     
-
     def findMaxConsecutiveOnes(self, nums):
         res = 0
         cur = 0
@@ -788,18 +788,113 @@ class Solution(object):
         dfs(root)
         return self.max_diameter
     
-
     def countBits(self, n):
         n = list(range(n+1))
         return [bin(n).count('1') for n in n]
-
 
     def testing(self):
         print('testing')
         return True
 
+
+    def image(self):
+        client = OpenAI(api_key="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")
+
+        # Function to encode the image
+        def encode_image(image_path):
+            with open(image_path, "rb") as image_file:
+                return base64.b64encode(image_file.read()).decode("utf-8")
+
+
+        # Path to your image
+        image_path = "/home/user01/RAG_Ticket/data/1.jpg"
+
+        # Getting the Base64 string
+        base64_image = encode_image(image_path)
+
+
+        response = client.responses.create(
+            model="gpt-4.1",
+            input=[
+                {
+                    "role": "user",
+                    "content": [
+                        { "type": "input_text", "text": "این عکس چیه؟" },
+                        {
+                            "type": "input_image",
+                            "image_url": f"data:image/jpeg;base64,{base64_image}",
+                        },
+                    ],
+                }
+            ],
+        )
+
+        print(response.output_text)
+
+
+    def streaming(self):
+
+
+        API_KEY = "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"
+        MODEL = "gpt-4o-realtime-preview-2024-12-17"
+
+        # تنظیمات صدا
+        SAMPLE_RATE = 16000
+        CHANNELS = 1
+        BLOCKSIZE = 1024
+
+        async def run_realtime():
+            uri = f"wss://api.openai.com/v1/realtime?model={MODEL}"
+
+            async with websockets.connect(
+                uri,
+                extra_headers={
+                    "Authorization": f"Bearer {API_KEY}",
+                    "OpenAI-Beta": "realtime=v1"
+                },
+            ) as ws:
+                print("🔊 وصل شدی! حالا صحبت کن...")
+
+                # استارت ضبط صدا
+                def callback(indata, frames, time, status):
+                    if status:
+                        print(status)
+                    audio_bytes = indata.tobytes()
+                    asyncio.run_coroutine_threadsafe(
+                        ws.send(json.dumps({
+                            "type": "input_audio_buffer.append",
+                            "audio": audio_bytes.hex()
+                        })), asyncio.get_event_loop()
+                    )
+
+                stream = sd.InputStream(callback=callback,
+                                        channels=CHANNELS,
+                                        samplerate=SAMPLE_RATE,
+                                        blocksize=BLOCKSIZE,
+                                        dtype='int16')
+                stream.start()
+
+                # حلقه دریافت پیام‌ها از مدل
+                async for message in ws:
+                    event = json.loads(message)
+
+                    if event["type"] == "response.output_audio.delta":
+                        audio = bytes.fromhex(event["audio"])
+                        audio_array = np.frombuffer(audio, dtype=np.int16)
+                        sd.play(audio_array, samplerate=SAMPLE_RATE)
+                        sd.wait()
+
+                    elif event["type"] == "response.completed":
+                        print("\n🤖 پاسخ کامل شد\n")
+
+        asyncio.run(run_realtime())
+
+
+
+
 if __name__ == "__main__":
     Solution = Solution()
+    Solution.streaming()
     # print(Solution.lengthOfLongestSubstring(s = "pwwkew"))
     # print(Solution.findMedianSortedArrays(nums1 = [1,3], nums2 = [2])) 
     # print(Solution.reverse(x = 1534236469))
@@ -856,6 +951,6 @@ if __name__ == "__main__":
     # print(Solution.islandPerimeter( grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]))
     # print(Solution.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1]))
     # print(Solution.diameterOfBinaryTree(root = [1,2,3,4,5,6,7,8]))
-    print(Solution.countBits(5))
+    # print(Solution.countBits(5))
 
 
