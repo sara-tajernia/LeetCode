@@ -6,8 +6,18 @@ class Solution(object):
         actual_sum = sum(nums)
         return expected_sum - actual_sum
 
-        
+    def firstUniqChar(self, s):
+        letters = {}
+        for char in s:
+            if char in letters:
+                letters[char] += 1
+            else:
+                letters[char] = 1
+        for i, char in enumerate(s):
+            if letters[char] == 1:
+                return i
+        return -1
 
 s = Solution()
-nums = [3,0,1]
-print(s.missingNumber(nums))
+# print(s.missingNumber([3,0,1]))
+print(s.firstUniqChar("loveleetcode"))
