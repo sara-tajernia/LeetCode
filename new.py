@@ -25,11 +25,15 @@ class Solution(object):
             return False
         sq = math.sqrt(num)
         return sq.is_integer()
-        
+    
+    def intersection(self, nums1, nums2):
+        return list(set(nums1) & set(nums2))
+
         
 
 
 s = Solution()
 # print(s.missingNumber([3,0,1]))
 # print(s.firstUniqChar("loveleetcode"))
-print(s.isPerfectSquare(15))
+# print(s.isPerfectSquare(15))
+print(s.intersection([4,9,5], [9,4,9,8,4]))
