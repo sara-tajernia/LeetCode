@@ -30,10 +30,28 @@ class Solution(object):
         return list(set(nums1) & set(nums2))
 
         
+    def isSubsequence(self, s, t):
+        for i in s:
+            if i in t:
+                t = t[t.index(i)+1:]
+                print(t)
+            else:
+                return False
+        return True
+
+    def hammingWeight(self, n):
+        count = 0
+        while n:
+            count += n & 1
+            n >>= 1
+        return count
 
 
 s = Solution()
 # print(s.missingNumber([3,0,1]))
 # print(s.firstUniqChar("loveleetcode"))
 # print(s.isPerfectSquare(15))
-print(s.intersection([4,9,5], [9,4,9,8,4]))
+# print(s.intersection([4,9,5], [9,4,9,8,4]))
+# print(s.isSubsequence(s = "axc", t = "ahbgdc"))
+# print(s.rob(nums = [2,7,9,3,1]))
+print(s.hammingWeight(11))
