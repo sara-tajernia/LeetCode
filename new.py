@@ -62,6 +62,43 @@ class Solution(object):
     def reverseWords(self, s):
         x = s.split()[::-1]
         return ' '.join(x)
+    
+    def maxProduct(self, nums):
+        max_so_far = nums[0]
+        min_so_far = nums[0]
+        result = nums[0]
+
+        for i in range(1, len(nums)):
+            num = nums[i]
+            temp_max = max(num, num * max_so_far, num * min_so_far)
+            temp_min = min(num, num * max_so_far, num * min_so_far)
+
+            max_so_far = temp_max
+            min_so_far = temp_min
+
+            result = max(result, max_so_far)
+        return result
+    
+    def findMin(self, nums):
+        first = 0
+        mid = len(nums)//2
+        end = len(nums)-1
+        while True:
+            if nums[mid] <= nums[end]:
+                end = mid
+                mid = (first+end)//2
+            elif nums[first] <= nums[mid]:
+                print(nums[mid], nums[end])
+                first = mid
+                mid = (first+end)//2
+            if end == mid or first == mid:
+                return min(nums[first], nums[end])
+
+
+
+
+
+
 
 
 
@@ -74,4 +111,8 @@ s = Solution()
 # print(s.isSubsequence(s = "axc", t = "ahbgdc"))
 # print(s.rob(nums = [2,7,9,3,1]))
 # print(s.hammingWeight(11))
-print(s.reverseWords("the sky is blue"))
+# print(s.reverseWords("the sky is blue"))
+# print(s.maxProduct([2,3,-2,4]))
+print(s.findMin([1,2]))
+
+
