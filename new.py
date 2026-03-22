@@ -93,9 +93,22 @@ class Solution(object):
                 mid = (first+end)//2
             if end == mid or first == mid:
                 return min(nums[first], nums[end])
+            
 
-
-
+    def repeatedStringMatch(self, a, b):
+        if b in a:
+            return 1
+        count = 1
+        ap = a
+        while len(ap) <= len(b) + 2*len(a):
+            print(ap, b, a, len(ap), len(b), len(a))
+            print(b , ap)
+            if b in ap:
+                return count
+            ap = ap+a
+            # print(ap)
+            count += 1 
+        return -1
 
 
 
@@ -113,6 +126,7 @@ s = Solution()
 # print(s.hammingWeight(11))
 # print(s.reverseWords("the sky is blue"))
 # print(s.maxProduct([2,3,-2,4]))
-print(s.findMin([1,2]))
+# print(s.findMin([1,2]))
+print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
 
 
