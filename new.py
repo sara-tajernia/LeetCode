@@ -112,9 +112,9 @@ class Solution(object):
 
     def maxKelements(self, nums, k):
         nums = [-x for x in nums]
-        print(nums)
+        # print(nums) 
         heapq.heapify(nums)
-        print(nums, "\n")
+        # print(nums, "\n")
         score = 0
         for _ in range(k):
             x = -heapq.heappop(nums)
@@ -123,11 +123,19 @@ class Solution(object):
             heapq.heappush(nums, -((x + 2) // 3))
 
         return score
+    
+    def minStoneSum(self, piles, k):
+        piles = [-p for p in piles]
+        heapq.heapify(piles)
+        score = 0
+        for _ in range(k):
+            num = -heapq.heappop(piles)
+            # print(num)
+            score += num
+            heapq.heappush(piles, -((num+1)//2))
+            # print(piles)
 
-
-
-
-
+        return -sum(piles)
 
 
 
@@ -144,5 +152,6 @@ s = Solution()
 # print(s.maxProduct([2,3,-2,4]))
 # print(s.findMin([1,2]))
 # print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
-print(s.maxKelements(nums = [1,10,3,3,3], k = 3))
+# print(s.maxKelements(nums = [1,10,3,3,3], k = 3))
+print(s.minStoneSum(piles = [4,3,6,7], k = 3))
 
