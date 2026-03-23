@@ -1,5 +1,5 @@
 import math
-
+import heapq
 class Solution(object):
     # [9,6,4,2,3,5,7,0,1] -> 8
     def missingNumber(self, nums):
@@ -110,6 +110,22 @@ class Solution(object):
             count += 1 
         return -1
 
+    def maxKelements(self, nums, k):
+        nums = [-x for x in nums]
+        print(nums)
+        heapq.heapify(nums)
+        print(nums, "\n")
+        score = 0
+        for _ in range(k):
+            x = -heapq.heappop(nums)
+            print(x)
+            score += x
+            heapq.heappush(nums, -((x + 2) // 3))
+
+        return score
+
+
+
 
 
 
@@ -127,6 +143,6 @@ s = Solution()
 # print(s.reverseWords("the sky is blue"))
 # print(s.maxProduct([2,3,-2,4]))
 # print(s.findMin([1,2]))
-print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
-
+# print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
+print(s.maxKelements(nums = [1,10,3,3,3], k = 3))
 
