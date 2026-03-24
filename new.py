@@ -150,6 +150,14 @@ class Solution(object):
             i += 1
 
         return nums
+    
+    def passThePillow(self, n, time):
+        if ((time-1) // (n-1)) % 2 == 0:
+            # print('sfdsf')
+            return (time-1) % (n-1) + 2
+        else:
+            return n - (time-1) % (n-1) -1
+
 
 
 
@@ -170,5 +178,8 @@ s = Solution()
 # print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
 # print(s.maxKelements(nums = [1,10,3,3,3], k = 3))
 # print(s.minStoneSum(piles = [4,3,6,7], k = 3))
-print(s.moveZeroes([0,0,1]))
+# print(s.moveZeroes([0,0,1]))
+# print(s.passThePillow(n = 3, time = 2))
+print(s.passThePillow(n = 18, time = 38))
 
+print(37//17)
