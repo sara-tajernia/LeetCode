@@ -136,6 +136,22 @@ class Solution(object):
             # print(piles)
 
         return -sum(piles)
+    
+
+    def moveZeroes(self, nums):
+        size = len(nums)
+        i = 0
+        while i < size:
+            if nums[i] == 0:
+                nums.pop(i)
+                nums.append(0)
+                size -= 1
+                i -= 1
+            i += 1
+
+        return nums
+
+
 
 
 
@@ -153,5 +169,6 @@ s = Solution()
 # print(s.findMin([1,2]))
 # print(s.repeatedStringMatch(a = "abc", b = "cabcabca"))
 # print(s.maxKelements(nums = [1,10,3,3,3], k = 3))
-print(s.minStoneSum(piles = [4,3,6,7], k = 3))
+# print(s.minStoneSum(piles = [4,3,6,7], k = 3))
+print(s.moveZeroes([0,0,1]))
 
