@@ -201,7 +201,42 @@ class Solution(object):
         while i >= 0 and num[i] == '0':
             i -= 1
         return num[:i+1]
+    
+    # def findMissingElements(self, nums):
+    #     s = sorted(nums)
+    #     miss = []
+    #     add = s[0]
+    #     print('sdfdf', add, s[len(s)-1]-add)
+    #     # for i in range(s[len(s)-1]-add):
+    #         # print(i+add, s[i])
+    #     i = 0
+    #     while i <= s[len(s)-1]-add:
+    #         print(i)
+    #         if i+ add != s[i]:
+    #             miss.append(i+add)
+    #             print(i+add, s[i])
+    #         else:
+    #             print("No missing element for", i+add)
+    #         i += 1
 
+
+
+    def findMissingElements(self, nums):
+        s = sorted(nums)
+        miss = []
+        add = s[0]
+        index = 0
+        for i in range(s[-1] - s[0] + 1):
+            if s[index] != i+add:
+                miss.append(i+add)
+            else:
+                index += 1
+        return miss
+
+
+
+
+        
 s = Solution()
 # print(s.missingNumber([3,0,1]))
 # print(s.firstUniqChar("loveleetcode"))
@@ -222,4 +257,6 @@ s = Solution()
 # print(s.combinationSum4(nums = [1,2,3], target = 4))               377
 # print(s.kthSmallest(matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8))
 # print(s.kthSmallest(matrix = [[1,2],[1,3]], k = 2))
-print(s.removeTrailingZeros(5100230100))
+# print(s.removeTrailingZeros(5100230100))
+# print(s.findMissingElements(nums = [7,8,6,9,12]))
+print(s.findMissingElements(nums = [1,4,2,5, 3]))
