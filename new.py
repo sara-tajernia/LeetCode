@@ -234,7 +234,25 @@ class Solution(object):
         return miss
 
 
+    # def maxProduct(self, nums):
+    #     n = 100000
+    #     if 0 in nums:
+    #         i = nums.index(0)
+    #         nums[i] = n
+    #     else:
+    #         i = nums.index(min(nums, key=abs))
+    #         nums[i] = n
+    #     product = 1
+    #     top3 = sorted(nums, key=abs, reverse=True)[:3]
 
+    #     product = top3[0] * top3[1] * top3[2]
+    #     return abs(product)
+
+
+
+    def maxProduct(self, nums):
+        top3 = sorted(nums, key=abs, reverse=True)[:2]
+        return abs(top3[0] * top3[1] * 100000)
 
         
 s = Solution()
@@ -243,7 +261,7 @@ s = Solution()
 # print(s.isPerfectSquare(15))
 # print(s.intersection([4,9,5], [9,4,9,8,4]))
 # print(s.isSubsequence(s = "axc", t = "ahbgdc"))
-# print(s.rob(nums = [2,7,9,3,1]))
+# print(s.rob(nums = [2,7,9n,3,1]))
 # print(s.hammingWeight(11))
 # print(s.reverseWords("the sky is blue"))
 # print(s.maxProduct([2,3,-2,4]))
@@ -259,4 +277,5 @@ s = Solution()
 # print(s.kthSmallest(matrix = [[1,2],[1,3]], k = 2))
 # print(s.removeTrailingZeros(5100230100))
 # print(s.findMissingElements(nums = [7,8,6,9,12]))
-print(s.findMissingElements(nums = [1,4,2,5, 3]))
+# print(s.findMissingElements(nums = [1,4,2,5, 3]))
+print(s.maxProduct(nums = [-4,-2,-1,-3]))
