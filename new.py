@@ -254,6 +254,27 @@ class Solution(object):
         top3 = sorted(nums, key=abs, reverse=True)[:2]
         return abs(top3[0] * top3[1] * 100000)
 
+
+    def checkStrings(self, s1, s2):
+        evens_s1, odds_s1 = [], []
+        evens_s2, odds_s2 = [], []
+        for i in range(len(s1)):
+            if i % 2 == 0:
+                evens_s1.append(s1[i])
+            else:
+                odds_s1.append(s1[i])
+
+        for i in range(len(s2)):
+            if i % 2 == 0:
+                evens_s2.append(s2[i])
+            else:
+                odds_s2.append(s2[i])
+        if sorted(evens_s1) == sorted(evens_s2) and sorted(odds_s1) == sorted(odds_s2):
+            return True
+        return False
+  
+
+
         
 s = Solution()
 # print(s.missingNumber([3,0,1]))
@@ -278,4 +299,8 @@ s = Solution()
 # print(s.removeTrailingZeros(5100230100))
 # print(s.findMissingElements(nums = [7,8,6,9,12]))
 # print(s.findMissingElements(nums = [1,4,2,5, 3]))
-print(s.maxProduct(nums = [-4,-2,-1,-3]))
+# print(s.maxProduct(nums = [-4,-2,-1,-3]))
+# print(s.minMovesToMakePalindrome(s = "letelt"))
+# print(s.checkStrings(s1 = "abcde", s2 = "baedc"))
+# print(s.checkStrings(s1 = "abcdba", s2 = "cabdab"))
+print(s.maxSum(nums = [1,2,1,2,1,2,1], m = 3, k = 3))
