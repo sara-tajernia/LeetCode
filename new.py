@@ -272,7 +272,55 @@ class Solution(object):
         if sorted(evens_s1) == sorted(evens_s2) and sorted(odds_s1) == sorted(odds_s2):
             return True
         return False
-  
+        
+
+    def maxSum(self, nums, m, k):
+        
+        def almost_unique(l):
+            unique = {}
+            for n in l:
+                if n in unique:
+                    unique[n] += 1
+                else:
+                    unique[n] = 1
+            # print(len(unique) >= m)
+                if len(unique) >= m:
+                    return sum(l)
+            return 0
+        
+        result = 0
+        for i in range(len(nums)-k+1):
+            # print(nums[i:i+k])
+            x = almost_unique(nums[i:i+k])
+            if result < x:
+                result = x
+        
+        return result
+
+    def isValidSudoku(self, board):
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        boxes = [set() for _ in range(9)]
+
+        for i in range(9):
+            for j in range(9):
+                val = board[i][j]
+                
+                if val == ".":
+                    continue
+
+                # box index (important!)
+                box_index = (i // 3) * 3 + (j // 3)
+
+                if val in rows[i] or val in cols[j] or val in boxes[box_index]:
+                    return False
+
+                rows[i].add(val)
+                cols[j].add(val)
+                boxes[box_index].add(val)
+
+        return True
+
 
 
         
@@ -303,4 +351,14 @@ s = Solution()
 # print(s.minMovesToMakePalindrome(s = "letelt"))
 # print(s.checkStrings(s1 = "abcde", s2 = "baedc"))
 # print(s.checkStrings(s1 = "abcdba", s2 = "cabdab"))
-print(s.maxSum(nums = [1,2,1,2,1,2,1], m = 3, k = 3))
+# print(s.maxSum(nums = [1], m = 1, k = 1))
+print(s.isValidSudoku(board = 
+[["5","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]))
