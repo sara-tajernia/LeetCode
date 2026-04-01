@@ -346,10 +346,23 @@ class Solution(object):
     #     print(cols)
 
 
-    def countAndSay(self, n):
-        counter = 0
-        for i in n:
-            print(i)
+    def countAndSay(self, num):
+        def sequence(n):
+            counter = 1
+            res = ''
+            for i in range(1, len(n)):
+                if n[i] == n[i-1]:
+                    counter += 1
+                else:
+                    res += str(counter) + str(n[i-1])
+                    counter = 1
+            res += str(counter) + str(n[-1])
+            return res
+        
+        res = "1"
+        for _ in range(int(num)-1):
+            res = sequence(res)
+        return res
 
 
         
@@ -400,4 +413,4 @@ s = Solution()
 #                              [".","6",".",".",".",".","2","8","."],
 #                              [".",".",".","4","1","9",".",".","5"],
 #                              [".",".",".",".","8",".",".","7","9"]]))
-print(s.countAndSay("3322251"))
+print(s.countAndSay("1"))
