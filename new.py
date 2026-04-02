@@ -363,6 +363,15 @@ class Solution(object):
         for _ in range(int(num)-1):
             res = sequence(res)
         return res
+    
+    def checkString(self, s):
+        check = True
+        for i in s:
+            if i == "b":
+                check = False
+            if not check and i == 'a':
+                return False
+        return True
 
 
         
@@ -413,4 +422,7 @@ s = Solution()
 #                              [".","6",".",".",".",".","2","8","."],
 #                              [".",".",".","4","1","9",".",".","5"],
 #                              [".",".",".",".","8",".",".","7","9"]]))
-print(s.countAndSay("1"))
+# print(s.countAndSay("1"))
+print(s.checkString(s = "aaabbb"))
+
+
