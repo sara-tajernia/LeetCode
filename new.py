@@ -372,6 +372,23 @@ class Solution(object):
             if not check and i == 'a':
                 return False
         return True
+    
+    def numberOfBeams(self, bank):
+        counter = 0
+        last_ones = bank[0].count('1')
+        for i in range(1, len(bank)):
+            ones = bank[i].count('1')
+            # print(ones)
+            if ones != 0:
+                counter += ones*last_ones
+                last_ones = ones
+                # print("up", last_ones, counter)
+        return counter
+
+
+
+
+
 
 
         
@@ -423,6 +440,7 @@ s = Solution()
 #                              [".",".",".","4","1","9",".",".","5"],
 #                              [".",".",".",".","8",".",".","7","9"]]))
 # print(s.countAndSay("1"))
-print(s.checkString(s = "aaabbb"))
+# print(s.checkString(s = "aaabbb"))
+print(s.numberOfBeams(bank = ["000","111","000"]))
 
 
