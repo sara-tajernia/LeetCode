@@ -386,6 +386,15 @@ class Solution(object):
         return counter
 
 
+    def asteroidsDestroyed(self, mass, asteroids):
+        asteroids.sort()
+        for w in asteroids:
+            if mass < w:
+                return False
+            mass += w 
+        return True
+
+    def minOperations(self, nums, x):
 
 
 
@@ -441,6 +450,8 @@ s = Solution()
 #                              [".",".",".",".","8",".",".","7","9"]]))
 # print(s.countAndSay("1"))
 # print(s.checkString(s = "aaabbb"))
-print(s.numberOfBeams(bank = ["000","111","000"]))
+# print(s.numberOfBeams(bank = ["000","111","000"]))
+# print(s.asteroidsDestroyed(mass = 5, asteroids = [4,9,23,4]))
+print(s.minOperations(nums = [3,2,20,1,1,3], x = 10))
 
 
