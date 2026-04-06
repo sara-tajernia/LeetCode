@@ -450,6 +450,29 @@ class Solution(object):
         for i in range(0, len(nums)-1, 2):
             nums[i], nums[i+1] = nums[i+1], nums[i]
         return nums
+    
+    def maximizeSquareArea(self, m, n, hFences, vFences):
+        hFences = [1] + hFences + [m]
+        vFences = [1] + vFences + [n]
+
+        hset = set()
+        vset = set()
+        for i in range(len(hFences)):
+            for j in range(i+1, len(hFences)):
+                hset.add(abs(hFences[j] - hFences[i]))
+
+        for i in range(len(vFences)):
+            for j in range(i+1, len(vFences)):
+                vset.add(abs(vFences[j] - vFences[i]))
+
+        common = hset & vset
+        if not common:
+            return -1
+
+        side = max(common)
+        MOD = 10**9 + 7
+        return (side * side) % MOD
+
 
 
 
@@ -507,4 +530,5 @@ s = Solution()
 # print(s.asteroidsDestroyed(mass = 5, asteroids = [4,9,23,4]))
 # print(s.minOperations(nums = [3,2,20,1,1,3], x = 10))
 # print(s.incremovableSubarrayCount([8,7,6,6]))
-print(s.numberGame(nums = [2,5]))
+# print(s.numberGame(nums = [2,5]))
+print(s.maximizeSquareArea(m = 3, n = 9, hFences = [2], vFences = [8,6,5,4]))
