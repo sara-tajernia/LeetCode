@@ -394,9 +394,62 @@ class Solution(object):
             mass += w 
         return True
 
-    def minOperations(self, nums, x):
+    # def minOperations(self, nums, x):
+    #     target = sum(nums) - x
+    
+    #     if target < 0:
+    #         return -1
+    #     if target == 0:
+    #         return len(nums)
+        
+    #     print(target)
+    #     left = 0
+    #     max_length = -1
+    #     current_sum = 0
 
+    #     for i in range(len(nums)):
+    #         if current_sum+nums[i] < target:
+    #             max_length += 1
+    #             current_sum += nums[i]
 
+    #         elif current_sum+nums[i] > target:
+                
+
+    # def incremovableSubarrayCount(self, nums):
+    #     n = len(nums)
+
+    #     # Step 1: longest increasing prefix
+    #     left = 0
+    #     while left + 1 < n and nums[left] < nums[left + 1]:
+    #         left += 1
+
+    #     # If already strictly increasing
+    #     if left == n - 1:
+    #         return n * (n + 1) // 2
+
+    #     ans = left + 2  # remove suffixes
+
+    #     # Step 2: process suffix
+    #     right = n - 1
+    #     while right > 0:
+    #         # ensure suffix is increasing
+    #         if right < n - 1 and nums[right] >= nums[right + 1]:
+    #             break
+
+    #         # move left pointer to satisfy bridge condition
+    #         while left >= 0 and nums[left] >= nums[right]:
+    #             left -= 1
+
+    #         ans += left + 2
+    #         right -= 1
+
+    #     return ans
+
+    def numberGame(self, nums):
+        nums.sort()
+        for i in range(0, len(nums)-1, 2):
+            nums[i], nums[i+1] = nums[i+1], nums[i]
+        return nums
 
 
 
@@ -452,6 +505,6 @@ s = Solution()
 # print(s.checkString(s = "aaabbb"))
 # print(s.numberOfBeams(bank = ["000","111","000"]))
 # print(s.asteroidsDestroyed(mass = 5, asteroids = [4,9,23,4]))
-print(s.minOperations(nums = [3,2,20,1,1,3], x = 10))
-
-
+# print(s.minOperations(nums = [3,2,20,1,1,3], x = 10))
+# print(s.incremovableSubarrayCount([8,7,6,6]))
+print(s.numberGame(nums = [2,5]))
