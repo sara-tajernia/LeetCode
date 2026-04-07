@@ -472,6 +472,18 @@ class Solution(object):
         side = max(common)
         MOD = 10**9 + 7
         return (side * side) % MOD
+    
+    def hasTrailingZeros(self, nums):
+        count = 0
+        for n in nums:
+            if n%2 == 0:
+                count += 1
+                if count == 2:
+                    return True
+                
+        return False
+            
+
 
 
 
@@ -531,4 +543,5 @@ s = Solution()
 # print(s.minOperations(nums = [3,2,20,1,1,3], x = 10))
 # print(s.incremovableSubarrayCount([8,7,6,6]))
 # print(s.numberGame(nums = [2,5]))
-print(s.maximizeSquareArea(m = 3, n = 9, hFences = [2], vFences = [8,6,5,4]))
+# print(s.maximizeSquareArea(m = 3, n = 9, hFences = [2], vFences = [8,6,5,4]))
+print(s.hasTrailingZeros(nums = [1,3,5,7,9]))
