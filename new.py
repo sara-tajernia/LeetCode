@@ -482,7 +482,32 @@ class Solution(object):
                     return True
                 
         return False
+    
+    def latestTimeCatchTheBus(self, buses, passengers, capacity):
+        buses.sort()
+        passengers.sort()
+        
+        pass_set = set(passengers)
+        
+        i = 0  
+        n = len(passengers)
+        
+        for b in buses:
+            cnt = 0
             
+            while i < n and passengers[i] <= b and cnt < capacity:
+                last = passengers[i]
+                i += 1
+                cnt += 1
+            
+            if cnt < capacity:
+                last = b
+        
+        res = last
+        while res in pass_set:
+            res -= 1
+        
+        return res
 
 
 
@@ -544,4 +569,9 @@ s = Solution()
 # print(s.incremovableSubarrayCount([8,7,6,6]))
 # print(s.numberGame(nums = [2,5]))
 # print(s.maximizeSquareArea(m = 3, n = 9, hFences = [2], vFences = [8,6,5,4]))
-print(s.hasTrailingZeros(nums = [1,3,5,7,9]))
+# print(s.hasTrailingZeros(nums = [1,3,5,7,9])) 
+# print(s.latestTimeCatchTheBus(buses = [3], passengers = [2,4], capacity = 2))
+# print(s.latestTimeCatchTheBus(buses = [10,20], passengers = [2,17,18,19], capacity = 2))
+# print(s.latestTimeCatchTheBus(buses = [3], passengers = [2], capacity = 2))
+print(s.latestTimeCatchTheBus(buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2))
+# print(s.latestTimeCatchTheBus(buses = [2,3], passengers = [4,2], capacity = 1))
