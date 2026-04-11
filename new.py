@@ -510,7 +510,34 @@ class Solution(object):
         return res
 
 
+    def minSumSquareDiff(self, nums1, nums2, k1, k2):
+        diffs = [abs(a - b) for a, b in zip(nums1, nums2)]
+        heapq = [-x for x in diffs]
+        heapq.heapify(heapq)
+        k = k1 + k2
 
+        while k > 0 and diffs[0] > 0:
+            # dont use _heappop_max
+            heapq = [-x for x in diffs]
+            heapq.heapify(heapq)
+            max_diff = -heapq.heappop(heapq)
+            max_diff -= 1
+            heapq.heappush(heapq, -max_diff)
+            diffs = [-x for x in heapq]
+            k -= 1
+
+        return sum(diff ** 2 for diff in diffs)
+    
+
+    def fillCups(self, A):
+        return max(max(A), (sum(A) + 1) // 2)
+                
+
+
+
+
+
+        
 
 
         
@@ -573,5 +600,7 @@ s = Solution()
 # print(s.latestTimeCatchTheBus(buses = [3], passengers = [2,4], capacity = 2))
 # print(s.latestTimeCatchTheBus(buses = [10,20], passengers = [2,17,18,19], capacity = 2))
 # print(s.latestTimeCatchTheBus(buses = [3], passengers = [2], capacity = 2))
-print(s.latestTimeCatchTheBus(buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2))
-# print(s.latestTimeCatchTheBus(buses = [2,3], passengers = [4,2], capacity = 1))
+# print(s.latestTimeCatchTheBus(buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2))
+# print(s.minSumSquareDiff(nums1 = [7,5,0,12,14], nums2 = [7,5,0,12,14], k1 = 2, k2 = 9))
+print(s.fillCups(amount = [5,4,4]))
+
