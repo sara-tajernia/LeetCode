@@ -533,8 +533,70 @@ class Solution(object):
         return max(max(A), (sum(A) + 1) // 2)
                 
 
+    def canChange(self, start, target):
+        if len(start) != len(target):
+            return False
+        if start.replace("_", "") != target.replace("_", ""):
+            return False
+        isLeft, isRight = False, False
+        for s, t in zip(start, target):
+            print(s, t)
+            if not isRight and s == "R":
+                isRight = True
+            elif isRight and s =="R":
+                isLeft = False
+            elif not isRight and t=="R":
+                return False
 
+            if not isLeft and t == "L":
+                isLeft = True
+                print("sdfdsf", isLeft)
+            elif isLeft and s =="L":
+                isLeft = False
+                print("isLeft", isLeft)
+            elif not isLeft and s =="L":
+                return False
+        return True
+        
+    def totalMoney(self, n):
+        if n == 0:
+            return 0
+        
+        last_monday = 1
+        last_day = 1
+        total = 1
+        for i in range(2, n+1):
+            if i%7 == 1:
+                last_monday += 1
+                total += last_monday
+                last_day = last_monday
+            else:
+                last_day += 1
+                total += last_day
 
+        return total
+        
+
+                
+        
+
+# class SmallestInfiniteSet(object):
+
+#     def __init__(self):
+        
+
+#     def popSmallest(self):
+#         """
+#         :rtype: int
+#         """
+        
+
+#     def addBack(self, num):
+#         """
+#         :type num: int
+#         :rtype: None
+#         """
+        
 
 
         
@@ -602,5 +664,7 @@ s = Solution()
 # print(s.latestTimeCatchTheBus(buses = [3], passengers = [2], capacity = 2))
 # print(s.latestTimeCatchTheBus(buses = [20,30,10], passengers = [19,13,26,4,25,11,21], capacity = 2))
 # print(s.minSumSquareDiff(nums1 = [7,5,0,12,14], nums2 = [7,5,0,12,14], k1 = 2, k2 = 9))
-print(s.fillCups(amount = [5,4,4]))
+# print(s.fillCups(amount = [5,4,4]))
+# print(s.canChange(start = "_LL__R__R_", target = "L___L___RR"))
+print(s.totalMoney(n = 20))
 
