@@ -577,6 +577,97 @@ class Solution(object):
         return total
         
 
+    # def maximumGain(self, s, x, y):
+    #     if x < y:
+    #         prior = "ba"
+    #         second = "ab"
+    #     else:
+    #         prior = "ab"
+    #         second = "ba"
+    #     print(prior, second)
+    
+
+    #     total = 0
+    #     while True:
+    #         while prior in s:
+    #             s = s.replace(prior, "", 1)
+    #             total += max(x,y) 
+    #         if second in s:
+    #             s = s.replace(second, "", 1)
+    #             total += min(x,y)
+    #             continue
+    #         else:
+    #             return total
+
+            
+    # def constructDistancedSequence(self, n):
+    #     res = [-1] * (2*n - 1)
+    #     print(res)
+    #     for i in range(n, 0,-1):
+    #         print(i)
+    #         for j in range(len(res)):
+    #             print(j, j+i, "fggsd")
+    #             if i == 1 and res[j]==-1:
+    #                 res[j] = 1
+    #                 break
+
+    #             if res[j] == -1 and res[j+i] == -1:
+    #                 res[j] = i
+    #                 res[j+i] = i
+    #                 # print(res[j], res[j+i])
+    #                 print(res)
+    #                 break
+    #     return res
+                
+    def constructDistancedSequence(self, n):
+        res = [-1] * (2 * n - 1)
+        used = [False] * (n + 1)
+
+        def backtrack(pos):
+            # If we filled the whole array → done
+            if pos == len(res):
+                return True
+
+            # Skip already filled positions
+            if res[pos] != -1:
+                return backtrack(pos + 1)
+
+            # Try numbers from large → small (greedy for lexicographically largest)
+            for num in range(n, 0, -1):
+                if used[num]:
+                    continue
+
+                if num == 1:
+                    # Place 1 only once
+                    res[pos] = 1
+                    used[1] = True
+
+                    if backtrack(pos + 1):
+                        return True
+
+                    # 🔙 backtrack
+                    res[pos] = -1
+                    used[1] = False
+
+                else:
+                    # Check bounds + availability
+                    if pos + num < len(res) and res[pos] == -1 and res[pos + num] == -1:
+                        res[pos] = res[pos + num] = num
+                        used[num] = True
+
+                        if backtrack(pos + 1):
+                            return True
+
+                        # 🔙 backtrack
+                        res[pos] = res[pos + num] = -1
+                        used[num] = False
+
+            return False
+
+        backtrack(0)
+        return res
+
+
                 
         
 
@@ -666,5 +757,8 @@ s = Solution()
 # print(s.minSumSquareDiff(nums1 = [7,5,0,12,14], nums2 = [7,5,0,12,14], k1 = 2, k2 = 9))
 # print(s.fillCups(amount = [5,4,4]))
 # print(s.canChange(start = "_LL__R__R_", target = "L___L___RR"))
-print(s.totalMoney(n = 20))
+# print(s.totalMoney(n = 20))
+# print(s.maximumGain(s = "cdbcbbaaabab", x = 4, y = 5))
+print(s.constructDistancedSequence(n = 5))
+
 
