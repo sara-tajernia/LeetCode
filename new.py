@@ -619,56 +619,75 @@ class Solution(object):
     #                 break
     #     return res
                 
-    def constructDistancedSequence(self, n):
-        res = [-1] * (2 * n - 1)
-        used = [False] * (n + 1)
+    # def constructDistancedSequence(self, n):
+    #     res = [-1] * (2 * n - 1)
+    #     used = [False] * (n + 1)
 
-        def backtrack(pos):
-            # If we filled the whole array → done
-            if pos == len(res):
-                return True
+    #     def backtrack(pos):
+    #         # If we filled the whole array → done
+    #         if pos == len(res):
+    #             return True
 
-            # Skip already filled positions
-            if res[pos] != -1:
-                return backtrack(pos + 1)
+    #         # Skip already filled positions
+    #         if res[pos] != -1:
+    #             return backtrack(pos + 1)
 
-            # Try numbers from large → small (greedy for lexicographically largest)
-            for num in range(n, 0, -1):
-                if used[num]:
-                    continue
+    #         # Try numbers from large → small (greedy for lexicographically largest)
+    #         for num in range(n, 0, -1):
+    #             if used[num]:
+    #                 continue
 
-                if num == 1:
-                    # Place 1 only once
-                    res[pos] = 1
-                    used[1] = True
+    #             if num == 1:
+    #                 # Place 1 only once
+    #                 res[pos] = 1
+    #                 used[1] = True
 
-                    if backtrack(pos + 1):
-                        return True
+    #                 if backtrack(pos + 1):
+    #                     return True
 
-                    # 🔙 backtrack
-                    res[pos] = -1
-                    used[1] = False
+    #                 # 🔙 backtrack
+    #                 res[pos] = -1
+    #                 used[1] = False
 
-                else:
-                    # Check bounds + availability
-                    if pos + num < len(res) and res[pos] == -1 and res[pos + num] == -1:
-                        res[pos] = res[pos + num] = num
-                        used[num] = True
+    #             else:
+    #                 # Check bounds + availability
+    #                 if pos + num < len(res) and res[pos] == -1 and res[pos + num] == -1:
+    #                     res[pos] = res[pos + num] = num
+    #                     used[num] = True
 
-                        if backtrack(pos + 1):
-                            return True
+    #                     if backtrack(pos + 1):
+    #                         return True
 
-                        # 🔙 backtrack
-                        res[pos] = res[pos + num] = -1
-                        used[num] = False
+    #                     # 🔙 backtrack
+    #                     res[pos] = res[pos + num] = -1
+    #                     used[num] = False
 
-            return False
+    #         return False
 
-        backtrack(0)
-        return res
+    #     backtrack(0)
+    #     return res
 
-
-                
+    def sequence_variant(self, n):
+        seq = [0] * (2 * n - 1)  # matches your example size
+        
+        stack = [(n, seq[:])]
+        
+        while stack:
+            k, curr = stack.pop()
+            
+            if k == 0:
+                return curr
+            
+            for i in range(len(curr) - k):
+                if curr[i] == 0 and curr[i + k] == 0:
+                    new_seq = curr[:]
+                    new_seq[i] = k
+                    new_seq[i + k] = k
+                    
+                    stack.append((k - 1, new_seq))
+        
+        return None
+                    
         
 
 # class SmallestInfiniteSet(object):
@@ -759,6 +778,6 @@ s = Solution()
 # print(s.canChange(start = "_LL__R__R_", target = "L___L___RR"))
 # print(s.totalMoney(n = 20))
 # print(s.maximumGain(s = "cdbcbbaaabab", x = 4, y = 5))
-print(s.constructDistancedSequence(n = 5))
+print(s.sequence_variant(n = 13))
 
 
