@@ -127,6 +127,50 @@
 
 
 
+# #!/bin/python3
+
+# import math
+# import os
+# import random
+# import re
+# import sys
+
+# def chocolateInBox(arr):
+#     total_xor = 0
+#     for num in arr:
+#         total_xor ^= num
+
+#     if total_xor == 0:
+#         return 0
+
+#     count = 0
+#     for num in arr:
+#         target = num ^ total_xor
+#         if target < num:
+#             count += 1
+
+#     return count
+
+
+    
+
+# if __name__ == '__main__':
+#     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+#     arr_count = int(input().strip())
+
+#     arr = list(map(int, input().rstrip().split()))
+
+#     result = chocolateInBox(arr)
+#     print(result)
+#     # fptr.write(str(result) + '\n')
+
+#     # fptr.close()
+
+
+
+
+
 #!/bin/python3
 
 import math
@@ -135,34 +179,29 @@ import random
 import re
 import sys
 
-def chocolateInBox(arr):
+
+def nimGame(pile):
     total_xor = 0
-    for num in arr:
+    for num in pile:
         total_xor ^= num
-
     if total_xor == 0:
-        return 0
+        return "Second"
+    return "First"
 
-    count = 0
-    for num in arr:
-        target = num ^ total_xor
-        if target < num:
-            count += 1
-
-    return count
-
-
-    
 
 if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    arr_count = int(input().strip())
+    g = int(input().strip())
 
-    arr = list(map(int, input().rstrip().split()))
+    for g_itr in range(g):
+        n = int(input().strip())
 
-    result = chocolateInBox(arr)
-    print(result)
-    # fptr.write(str(result) + '\n')
+        pile = list(map(int, input().rstrip().split()))
+
+        result = nimGame(pile)
+        print(result)
+
+        # fptr.write(result + '\n')
 
     # fptr.close()
