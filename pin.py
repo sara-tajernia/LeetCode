@@ -229,4 +229,59 @@ def maxAreaOfIsland(grid):
 grid =[[0,0,0,0,0,0,0,0]]
 
 
-print(maxAreaOfIsland(grid))
+# print(maxAreaOfIsland(grid))
+
+
+
+from collections import deque
+
+def orangesRotting(grid):
+
+    rows = len(grid)
+    cols = len(grid[0])
+
+    queue = deque()
+    fresh_count = 0
+    munutes = -1
+    visited = set()
+
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] == 2:
+                queue.append((i,j))
+            elif grid[i][j] == 1:
+                fresh_count += 1
+    print(list(queue), len(queue))
+
+    if len(queue) == 0:
+        return -1 if 0<fresh_count else 0
+    
+    dirs = [(0,1), (1,0), (-1,0), (0,-1)]
+
+    while 0 < len(queue):
+    # while len(queue) < 4:
+        cicle = len(queue)
+        for n in range(cicle):
+            i, j = queue.popleft()
+            print(i, j, list(queue))
+
+            for di, dj in dirs:
+                r = di + i
+                c = dj + j
+                if 0<=r and r<rows and 0<=c and c<cols and grid[r][c] == 1:
+                    if (r,c) not in queue:
+                        queue.append((r,c))
+                    grid[r][c] = 2
+                    fresh_count -=1
+        munutes += 1
+        print('asdadds',list(queue), munutes)
+
+    print (munutes, fresh_count)
+    return munutes if fresh_count==0 else -1
+
+
+
+
+grid = [[1]]
+
+print(orangesRotting(grid))
